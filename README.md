@@ -8,7 +8,7 @@
 | email              | string              | null: false, unique: true |
 | encrypted_password | string              | null: false               |
 | first_name         | string              | null: false               |
-| last_name          | string                | null: false               |
+| last_name          | string              | null: false               |
 | read_first         | string              | null: false               |
 | read_last          | string              | null: false               |
 | birth_day          | date                | null: false               |
@@ -22,7 +22,7 @@
 
 | Column                   | Type                | Options                        |
 |--------------------------|---------------------|--------------------------------|
-| user                     | reference           | null: false, foreign_key: true |
+| user                     | references          | null: false, foreign_key: true |
 | item_name                | string              | null: false                    |
 | item_description         | text                | null: false                    |
 | category_id              | integer             | null: false                    |
@@ -30,7 +30,7 @@
 | shipping_fee_burden_id   | integer             | null: false                    |
 | prefecture_id            | integer             | null: false                    |
 | shipping_day_id          | integer             | null: false                    |
-| price                    | string              | null: false                    |
+| price                    | integer             | null: false                    |
 
 ### Association
 
@@ -41,7 +41,7 @@
 
 | Column                   | Type                | Options                        |
 |--------------------------|---------------------|--------------------------------|
-| order                    | reference           | null: false, foreign_key: true |
+| order                    | references          | null: false, foreign_key: true |
 | post_code                | string              | null: false                    |
 | prefecture_id            | integer             | null: false                    |
 | city                     | string              | null: false                    |
@@ -57,8 +57,8 @@
 
 | Column                   | Type                | Options                        |
 |--------------------------|---------------------|--------------------------------|
-| user                     | reference           | null: false, foreign_key: true |
-| item                     | reference           | null: false, foreign_key: true |
+| user                     | references          | null: false, foreign_key: true |
+| item                     | references          | null: false, foreign_key: true |
 
 ### Association
 
