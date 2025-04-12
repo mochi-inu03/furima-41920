@@ -14,4 +14,7 @@ class User < ApplicationRecord
     validates :email, uniqueness: true
     validates :birth_day
   end
+
+  has_many :items
+  has_many :orders
 end
