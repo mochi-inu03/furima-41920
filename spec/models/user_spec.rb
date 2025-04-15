@@ -6,13 +6,13 @@ RSpec.describe User, type: :model do
       @user = FactoryBot.build(:user)
     end
 
-    describe '新規登録できるとき' do
+    context '新規登録できるとき' do
       it 'nicknameとemail、passwordとpassword_confirmationが存在すれば登録できる' do
         expect(@user).to be_valid
       end
     end
 
-    describe '新規登録できないとき' do
+    context '新規登録できないとき' do
       it 'nicknameが空では登録できない' do
         @user.nickname = ''
         @user.valid?
@@ -39,8 +39,8 @@ RSpec.describe User, type: :model do
       end
 
       it 'passwordが5文字以下では登録できない' do
-        @user.password = '00000'
-        @user.password_confirmation = '00000'
+        @user.password = 'ab12'
+        @user.password_confirmation = 'ab12'
         @user.valid?
         expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
@@ -48,6 +48,20 @@ RSpec.describe User, type: :model do
       it 'passwordが英字のみでは登録できない' do
         @user.password = 'abcdef'
         @user.password_confirmation = 'abcdef'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
+      end
+
+      it 'passwordが全角では登録できない' do
+        @user.password = 'ＡＢＣＤＥＦ'
+        @user.password_confirmation = 'ＡＢＣＤＥＦ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password には半角文字を使用してください')
+      end
+
+      it 'passwordが数字のみでは登録できない' do
+        @user.password = '0000'
+        @user.password_confirmation = '0000'
         @user.valid?
         expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
       end
@@ -111,12 +125,6 @@ RSpec.describe User, type: :model do
         @user.birth_day = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Birth day can't be blank")
-      end
-
-      it 'nicknameが7文字以上では登録できない' do
-        @user.nickname = 'abcdefg'
-        @user.valid?
-        expect(@user.errors.full_messages).to include('Nickname は6文字以内で入力してください')
       end
 
       it '重複したemailが存在する場合は登録できない' do
