@@ -5,15 +5,14 @@ const price = () => {
 
   priceInput.addEventListener("input", () => {
     const inputValue = priceInput.value;
-    console.log(inputValue);
 
     const tax = Math.floor(inputValue * 0.1);
     addTaxDom.innerHTML = `${tax}`;
-    console.log(addTaxDom.innerHTML);
+
 
     const profit = Math.floor(inputValue - tax);
     profitDom.innerHTML = `${profit}`;
-    console.log(profitDom.innerHTML);
+
   }); 
 };
 

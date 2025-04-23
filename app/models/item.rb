@@ -15,8 +15,7 @@ class Item < ApplicationRecord
     validates :shipping_fee_burden_id
     validates :prefecture_id
     validates :shipping_day_id
-    validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 },
-                      format: { with: /\A[0-9]+\z/, message: 'must be a number' }
+    validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
     validates :image
   end
 
