@@ -23,4 +23,6 @@ class User < ApplicationRecord
 
     errors.add(:password, 'には半角文字を使用してください')
   end
+
+  has_many :items
 end
