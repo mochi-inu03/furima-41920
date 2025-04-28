@@ -131,7 +131,8 @@
       <% if @items.any? %>
   <% @items.each do |item| %>
     <li class='list'>
-      <%= link_to item_path(item) do %>
+
+      <%= link_to  item_path(item) do %>
         <div class='item-img-content'>
           <%= image_tag item.image.variant(resize: '300x300'), class: 'item-image' if item.image.attached? %>
 
@@ -158,7 +159,7 @@
   <% end %>
 <% else %>
       <li class='list'>
-        <%= link_to '#' do %>
+        <%= link_to new_item_path do %>
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
         <div class='item-info'>
           <h3 class='item-name'>

@@ -6,15 +6,17 @@
     <h2 class="name">
       <%= @item.item_name %>
     </h2>
-    <%= image_tag @item.image.variant(resize: '300x300'), class: 'item-image' if @item.image.attached? %>
-      <%# 商品が売れている場合は、sold outを表示しましょう %>
+
+    <div class="item-img-content">
+      <%= image_tag @item.image.variant(resize: '300x300'), class: 'item-image' if @item.image.attached? %>
+
       <%# if @item.sold_out? %>
-       <div class="sold-out">
-         <span>Sold Out!!</span>
-       </div>
+        <div class="sold-out">
+          <span>Sold Out!!</span>
+        </div>
       <%# end %>
-      <%# //商品が売れている場合は、sold outを表示しましょう %>
     </div>
+
     <div class="item-price-box">
       <span class="item-price">
         ¥<%= @item.price %>
@@ -24,19 +26,24 @@
       </span>
     </div>
 
-  <% if user_signed_in? %>
-  <% if current_user.id == @item.user_id %>
-    <%= link_to "商品の編集","#", method: :get, class: "item-red-btn" %>
-    <p class="or-text">or</p>
-    <%= link_to "削除", "#", data: {turbo_method: :delete}, class:"item-destroy" %>
-  <% else %>
- <%# if @item.not_sold_out? %>
-     <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
-  <%# end %>
-<% end %>
+
+    <% if user_signed_in? %>
+      <% if current_user.id == @item.user_id %>
+        <%= link_to "商品の編集", edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
+        <p class="or-text">or</p>
+        <%= link_to "削除", "#", data: { turbo_method: :delete }, class: "item-destroy" %>
+      <% else %>
+      
+        <%# if @item.not_sold_out? %>
+          <%= link_to "購入画面に進む", "#", class: "item-red-btn" %>
+        <%# end %>
+      <% end %>
+    <% end %>
+
     <div class="item-explain-box">
       <span><%= @item.item_description %></span>
     </div>
+
     <table class="detail-table">
       <tbody>
         <tr>
@@ -65,13 +72,14 @@
         </tr>
       </tbody>
     </table>
+
     <div class="option">
       <div class="favorite-btn">
-        <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
+        <%= image_tag "star.png", class: "favorite-star-icon", width: "20", height: "20" %>
         <span>お気に入り 0</span>
       </div>
       <div class="report-btn">
-        <%= image_tag "flag.png" ,class:"report-flag-icon" ,width:"20",height:"20"%>
+        <%= image_tag "flag.png", class: "report-flag-icon", width: "20", height: "20" %>
         <span>不適切な商品の通報</span>
       </div>
     </div>
@@ -88,11 +96,12 @@
         不快な言葉遣いなどは利用制限や退会処分となることがあります。
       </p>
       <button type="submit" class="comment-btn">
-        <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-        <span>コメントする<span>
+        <%= image_tag "comment.png", class: "comment-flag-icon", width: "20", height: "25" %>
+        <span>コメントする</span>
       </button>
     </form>
   </div>
+
   <div class="links">
     <a href="#" class="change-item-btn">
       ＜ 前の商品
@@ -101,7 +110,9 @@
       後ろの商品 ＞
     </a>
   </div>
-  <a href= "#" class="another-item"><%= @item.category.name %>をもっと見る</a>
+
+  <a href="#" class="another-item"><%= @item.category.name %>をもっと見る</a>
+
 </div>
 
 <%= render "shared/footer" %>
