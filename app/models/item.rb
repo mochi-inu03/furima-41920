@@ -7,10 +7,6 @@ class Item < ApplicationRecord
   belongs_to :shipping_day
   belongs_to :user
 
-  def not_sold_out?
-    # sold_out?
-  end
-
   with_options presence: true do
     validates :item_name
     validates :item_description
