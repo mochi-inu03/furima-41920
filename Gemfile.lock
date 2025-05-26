@@ -145,6 +145,7 @@ GEM
     faker (3.5.1)
       i18n (>= 1.8.11, < 2)
     ffi (1.17.2-x86_64-darwin)
+    ffi (1.17.2-x86_64-linux-gnu)
     globalid (1.2.1)
       activesupport (>= 6.1)
     gon (6.4.0)
@@ -196,6 +197,7 @@ GEM
       benchmark
       logger
     mini_mime (1.1.5)
+    mini_portile2 (2.8.9)
     minitest (5.25.5)
     msgpack (1.8.0)
     multi_json (1.15.0)
@@ -212,7 +214,8 @@ GEM
       net-protocol
     netrc (0.11.0)
     nio4r (2.7.4)
-    nokogiri (1.18.8-x86_64-darwin)
+    nokogiri (1.18.8)
+      mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.27.0)
@@ -370,6 +373,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin
+  x86_64-linux
 
 DEPENDENCIES
   active_hash
@@ -386,6 +390,7 @@ DEPENDENCIES
   jbuilder
   mini_magick
   mysql2 (~> 0.5)
+  nokogiri
   payjp
   pry-rails
   puma (>= 5.0)
